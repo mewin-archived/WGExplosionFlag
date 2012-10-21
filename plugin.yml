@@ -1,5 +1,8 @@
 name: WGExplosionFlag
 main: com.mewin.WGExplosionFlag.WGExplosionFlagPlugin
+description: WorldGuard extension to block certain explosion causes in specific regions.
 version: 1.0
+
+authors: [ mewin ]
 depend: [ WorldGuard, WGCustomFlags ]
-author: mewin
+softdepend: [ WorldEdit ]
