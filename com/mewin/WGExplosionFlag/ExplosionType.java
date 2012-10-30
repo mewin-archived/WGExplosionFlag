@@ -22,9 +22,11 @@ package com.mewin.WGExplosionFlag;
  */
 public enum ExplosionType {
     ANY,
-    CREEPER, 
-    ENDER_CRYSTAL, 
-    GHAST, 
-    TNT, 
+    CREEPER,
+    ENDER_CRYSTAL,
+    GHAST,
+    TNT,
+    WITHER,
+    FIREBALL,
     OTHER
 }

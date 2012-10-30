@@ -124,6 +124,11 @@ public final class Utils {
                 return ExplosionType.GHAST;
             case PRIMED_TNT:
                 return ExplosionType.TNT;
+            case WITHER:
+            case WITHER_SKULL:
+                return ExplosionType.WITHER;
+            case FIREBALL:
+                return ExplosionType.FIREBALL;
             default:
                 return ExplosionType.OTHER;
         }
