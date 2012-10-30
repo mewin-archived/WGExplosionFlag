@@ -27,6 +27,7 @@ public enum ExplosionType {
     GHAST,
     TNT,
     WITHER,
+    WITHER_SKULL,
     FIREBALL,
     OTHER
 }
