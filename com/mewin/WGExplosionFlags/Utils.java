@@ -98,17 +98,23 @@ public final class Utils {
     }
     
     public static Object explosionAllowedInRegion(ProtectedRegion region, ExplosionType explosionType) {
-        
-        HashSet<ExplosionType> allowedExplosions = (HashSet<ExplosionType>) region.getFlag(WGExplosionFlagsPlugin.ALLOW_EXPLOSION_FLAG);
-        HashSet<ExplosionType> blockedExplosions = (HashSet<ExplosionType>) region.getFlag(WGExplosionFlagsPlugin.DENY_EXPLOSION_FLAG);
-        
-        if (allowedExplosions != null && (allowedExplosions.contains(explosionType) || allowedExplosions.contains(ExplosionType.ANY))) {
+        if (region == null)
+        {
             return true;
         }
-        else if(blockedExplosions != null && (blockedExplosions.contains(explosionType) || blockedExplosions.contains(ExplosionType.ANY))) {
-            return false;
-        } else {
-            return null;
+        else
+        {
+            HashSet<ExplosionType> allowedExplosions = (HashSet<ExplosionType>) region.getFlag(WGExplosionFlagsPlugin.ALLOW_EXPLOSION_FLAG);
+            HashSet<ExplosionType> blockedExplosions = (HashSet<ExplosionType>) region.getFlag(WGExplosionFlagsPlugin.DENY_EXPLOSION_FLAG);
+
+            if (allowedExplosions != null && (allowedExplosions.contains(explosionType) || allowedExplosions.contains(ExplosionType.ANY))) {
+                return true;
+            }
+            else if(blockedExplosions != null && (blockedExplosions.contains(explosionType) || blockedExplosions.contains(ExplosionType.ANY))) {
+                return false;
+            } else {
+                return null;
+            }
         }
     }
     
