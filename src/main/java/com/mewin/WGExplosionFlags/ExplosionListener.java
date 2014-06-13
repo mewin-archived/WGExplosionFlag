@@ -36,7 +36,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
  *
  * @author mewin
  */
-public class ExplosionListener implements Listener {
+public class ExplosionListener implements Listener
+{
     private WorldGuardPlugin wgPlugin;
     
     public ExplosionListener(WorldGuardPlugin wgPlugin)
