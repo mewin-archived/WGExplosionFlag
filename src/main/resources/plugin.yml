@@ -1,0 +1,6 @@
+name: WGExplosionFlags
+main: com.mewin.WGExplosionFlags.WGExplosionFlagsPlugin
+version: 1.1
+depend: [ WorldGuard, WGCustomFlags ]
+authors: [ mewin, BangL ]
+softdepend: [ WorldEdit ]
