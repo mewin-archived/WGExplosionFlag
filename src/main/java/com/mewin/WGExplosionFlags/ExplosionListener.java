@@ -25,14 +25,19 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
+import org.bukkit.event.hanging.HangingBreakEvent.RemoveCause;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 /**
  *
  * @author mewin
  */
-public class ExplosionListener implements Listener {
+public class ExplosionListener implements Listener
+{
     private WorldGuardPlugin wgPlugin;
     
     public ExplosionListener(WorldGuardPlugin wgPlugin)
@@ -60,6 +65,23 @@ public class ExplosionListener implements Listener {
                 if (!Utils.explosionAllowedAtLocation(wgPlugin, type, block.getLocation()))
                 {
                     itr.remove();
+                }
+            }
+        }
+    }
+    
+    @EventHandler
+    public void onHangingBreak(HangingBreakEvent e)
+    {
+        if (e.getCause() == RemoveCause.EXPLOSION && e.getEntity().getLastDamageCause() != null)
+        {
+            EntityDamageEvent ldc = e.getEntity().getLastDamageCause();
+            if (ldc != null && ldc instanceof EntityDamageByEntityEvent)
+            {
+                ExplosionType type = Utils.explosionTypeForEntity(((EntityDamageByEntityEvent) ldc).getDamager().getType());
+                if (type != null && !Utils.explosionAllowedAtLocation(wgPlugin, type, e.getEntity().getLocation()))
+                {
+                    e.setCancelled(true);
                 }
             }
         }
